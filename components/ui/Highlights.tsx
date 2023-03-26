@@ -18,28 +18,24 @@ export interface Props {
 
 function Highlights({ highlights = [], title }: Props) {
   return (
-    <Container class="grid grid-cols-1 grid-rows-[48px_1fr] py-10">
-      <h2 class="text-center">
-        <Text variant="heading-2">{title}</Text>
-      </h2>
-
+    <Container class="gap-5 px-[15px] md:px-[120px] py-[21px] md:py-[46px]">
       <Slider
         class="gap-6"
         snap="snap-center sm:snap-start block first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
       >
         {highlights.map(({ href, src, alt, label }) => (
-          <a
-            href={href}
-            class="flex flex-col gap-4 items-center min-w-[190px]"
-          >
-            <Image
-              class="rounded-[40px]"
+          <a href={href} class="w-[161px] md:w-[285px] cursor-pointer group">
+            <img
+              class="object-cover w-full h-[120px] md:h-[292px] rounded-t-[13px] group-hover:shadow-xl"
               src={src}
               alt={alt}
-              width={190}
-              height={265}
+              loading="eager"
             />
-            <Text variant="body">{label}</Text>
+            <div class="bg-[#ECCDA5] h-[41px] md:h-[100px] rounded-b-[13px] flex justify-center items-center group-hover:shadow-xl">
+              <p class="font-semibold text-[20px] md:text-[48px] text-black">
+                {label}
+              </p>
+            </div>
           </a>
         ))}
       </Slider>

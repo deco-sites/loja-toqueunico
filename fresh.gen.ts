@@ -668,9 +668,15 @@ const manifest: DecoManifest = {
             "title": "Config V T E X",
             "description": "vtex config used for search autocompletion;",
           },
+          "logoImage": {
+            "format": "image-uri",
+            "type": "string",
+            "title": "Logo Image",
+          },
         },
         "required": [
           "alerts",
+          "logoImage",
         ],
       },
       "outputSchema": null,

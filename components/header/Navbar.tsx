@@ -7,10 +7,13 @@ import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import HeaderSearchMenu from "$store/islands/HeaderSearchMenu.tsx";
+import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Container from "$store/components/ui/Container.tsx";
 
-function Navbar({ items, searchbar }: {
+function Navbar({ items, searchbar, image }: {
   items: INavItem[];
   searchbar: SearchbarProps;
+  image: LiveImage;
 }) {
   return (
     <>
@@ -22,10 +25,15 @@ function Navbar({ items, searchbar }: {
 
         <a
           href="/"
-          class={`flex-grow inline-flex items-center min-h-[${navbarHeight}]`}
+          class={`flex-grow inline-flex items-center h-[${navbarHeight}]`}
           aria-label="Store logo"
         >
-          <Icon id="Logo" width={126} height={16} />
+          <img
+            class="object-cover w-[175px]"
+            src={image}
+            alt="logo"
+            loading="eager"
+          />
         </a>
 
         <div class="flex gap-1">
@@ -35,14 +43,21 @@ function Navbar({ items, searchbar }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b-1 border-default w-full pl-2 pr-3">
-        <div class="flex-none w-44">
-          <a href="/" aria-label="Store logo" class="block px-4 py-3 w-[160px]">
-            <Icon id="Logo" width={126} height={16} />
+      <Container
+        class={`hidden md:flex flex-row justify-between items-center border-b-1 border-default w-full pl-2 pr-3 h-[${navbarHeight}]`}
+      >
+        <div class="flex">
+          <a href="/" aria-label="Store logo" class="block mr-10">
+            <img
+              class="object-contain w-[317px] h-[51px]"
+              src={image}
+              alt="logo"
+              loading="eager"
+            />
           </a>
-        </div>
-        <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} />)}
+          <div class="flex-auto flex justify-center">
+            {items.map((item) => <NavItem item={item} />)}
+          </div>
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
           <HeaderButton variant="search" />
@@ -53,11 +68,17 @@ function Navbar({ items, searchbar }: {
             href="/login"
             aria-label="Log in"
           >
-            <Icon id="User" width={20} height={20} strokeWidth={0.4} />
+            <Icon
+              id="User"
+              width={20}
+              height={20}
+              strokeWidth={0.4}
+              class="text-white"
+            />
           </Button>
           <HeaderButton variant="cart" />
         </div>
-      </div>
+      </Container>
     </>
   );
 }

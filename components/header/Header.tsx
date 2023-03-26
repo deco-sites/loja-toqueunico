@@ -4,6 +4,7 @@ import type { EditableProps as SearchbarProps } from "$store/components/search/S
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
 import type { ClientConfigVTEX } from "deco-sites/std/functions/vtexConfig.ts";
+import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
@@ -51,6 +52,8 @@ export interface Props {
    * @description vtex config used for search autocompletion;
    */
   configVTEX?: LoaderReturnType<ClientConfigVTEX>;
+
+  logoImage: LiveImage;
 }
 
 function Header(
@@ -61,16 +64,16 @@ function Header(
     navItems = [],
     suggestions,
     configVTEX,
+    logoImage,
   }: Props,
 ) {
   const searchbar = { ..._searchbar, products, suggestions, configVTEX };
   return (
     <header class={`h-[${headerHeight}]`}>
-      <div class="bg-default fixed w-full z-50">
-        <Alert alerts={alerts} />
-        <Navbar items={navItems} searchbar={searchbar} />
+      <div class="bg-[#242D21] fixed w-full z-50">
+        {/* <Alert alerts={alerts} /> */}
+        <Navbar items={navItems} searchbar={searchbar} image={logoImage} />
       </div>
-
       <Modals
         menu={{ items: navItems }}
         searchbar={searchbar}

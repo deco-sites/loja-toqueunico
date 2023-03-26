@@ -9,12 +9,12 @@ export default function GiveYourTouch() {
           consectetur lectus sed leo ultricies.
         </p>
         <div class="hidden md:inline">
-          <Button size="large" variant="primary">
+          <Button variant="primary">
             DÊ O SEU TOQUE
           </Button>
         </div>
         <div class="md:hidden inline">
-          <Button size="small" variant="primary">
+          <Button variant="primary">
             DÊ O SEU TOQUE
           </Button>
         </div>
