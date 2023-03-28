@@ -19,7 +19,7 @@ function Navbar({ items, searchbar, image }: {
     <>
       {/* Mobile Version */}
       <div
-        class={`md:hidden flex flex-row justify-between items-center h-[${navbarHeight}] border-b-1 border-default w-full px-2 gap-2`}
+        class={`md:hidden flex flex-row justify-between items-center h-[${navbarHeight}] w-full px-2 gap-2`}
       >
         <HeaderButton variant="menu" />
 
@@ -44,7 +44,7 @@ function Navbar({ items, searchbar, image }: {
 
       {/* Desktop Version */}
       <Container
-        class={`hidden md:flex flex-row justify-between items-center border-b-1 border-default w-full pl-2 pr-3 h-[${navbarHeight}]`}
+        class={`hidden md:flex flex-row justify-between items-center w-full pl-2 pr-3 h-[${navbarHeight}]`}
       >
         <div class="flex">
           <a href="/" aria-label="Store logo" class="block mr-10">

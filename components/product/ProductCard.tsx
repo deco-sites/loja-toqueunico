@@ -95,7 +95,7 @@ function ProductCard({ product, preload }: Props) {
           )}
         </div>
 
-        <div class="flex flex-col gap-1 py-2">
+        <div class="flex flex-col gap-1 py-2 px-5">
           <Text
             class="overflow-hidden overflow-ellipsis whitespace-nowrap"
             variant="caption"

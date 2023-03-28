@@ -1,4 +1,5 @@
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Container from "$store/components/ui/Container.tsx";
 
 export interface Props {
   imgSrc: LiveImage;
@@ -8,7 +9,7 @@ function Footer({ imgSrc }: Props) {
   return (
     <footer class="w-full bg-[#242D21]">
       <div class="hidden md:block  w-full">
-        <div class="flex justify-between items-center px-[118px] py-[64px] text-[#ECCDA5] text-[24px] font-normal">
+        <Container class="flex justify-between items-center py-[32px] text-[#ECCDA5] text-[24px] font-normal">
           <a
             href="/"
             aria-label="home"
@@ -24,9 +25,9 @@ function Footer({ imgSrc }: Props) {
           <p class="cursor-pointer hover:text-white">Termos e condições</p>
           <p class="cursor-pointer hover:text-white">Privacidade</p>
           <p class="cursor-pointer hover:text-white">CNPJ + endereço</p>
-        </div>
+        </Container>
       </div>
-      <div class="md:hidden pt-[24px] pb-[42px] px-[16px] flex flex-col text-[#ECCDA5] text-[11px] font-normal items-center justify-center">
+      <Container class="md:hidden pt-[24px] pb-[42px] px-[16px] flex flex-col text-[#ECCDA5] text-[11px] font-normal items-center justify-center">
         <p class="pb-[32px]">
           <a
             href="/"
@@ -46,7 +47,7 @@ function Footer({ imgSrc }: Props) {
           <p class="cursor-pointer hover:text-white">Privacidade</p>
           <p class="cursor-pointer hover:text-white">CNPJ + endereço</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

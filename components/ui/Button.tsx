@@ -14,7 +14,7 @@ export type Props =
 
 const variants = {
   primary:
-    "text-[#ECCDA5] bg-[#324836] rounded-[10px] h-[36px] px-3 rounded font-button text-button text-default-inverse border-transparent hover:bg-[#242D21] hover:text-[#ECCDA5] hover:border-interactive active:bg-interactive active:text-default-inverse active:border-transparent disabled:border-default disabled:text-subdued disabled:bg-interactive-inverse focus:outline-none ",
+    "text-[#ECCDA5] bg-[#324836] rounded-[10px] h-[36px] px-3 rounded font-button border-transparent hover:bg-[#242D21] hover:text-[#ECCDA5] hover:border-interactive active:bg-interactive active:text-default-inverse active:border-transparent disabled:border-default disabled:text-subdued disabled:bg-interactive-inverse focus:outline-none ",
   secondary:
     "text-[#324836] bg-[#ECCDA5] rounded-[10px] h-[36px] px-3 rounded bg-interactive-inverse font-button text-button border-default hover:bg-hover active:bg-interactive active:text-interactive-inverse disabled:border-default disabled:text-subdued disabled:bg-interactive-inverse focus:outline-none",
   tertiary:

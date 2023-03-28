@@ -57,7 +57,7 @@ function ProductShelf({
                 size={20}
                 id="ChevronLeft"
                 strokeWidth={3}
-                class="text=[#ECCDA5]"
+                class="text-[#ECCDA5]"
               />
             </Button>
           </div>
@@ -73,7 +73,7 @@ function ProductShelf({
                 size={20}
                 id="ChevronRight"
                 strokeWidth={3}
-                class="text=[#ECCDA5]"
+                class="text-[#ECCDA5]"
               />
             </Button>
           </div>
