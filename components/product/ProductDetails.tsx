@@ -9,6 +9,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
+import IconStarFilled from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/star-filled.tsx";
 
 import ProductSelector from "./ProductVariantSelector.tsx";
 
@@ -47,7 +48,67 @@ function Details({ page }: { page: ProductDetailsPage }) {
 
   return (
     <Container class="py-0 sm:py-10">
-      <div class="flex flex-col gap-4 sm:flex-row sm:gap-10">
+      <div class="md:inline hidden mx-4">
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
+        <div class="flex">
+          <div class="flex flex-row overflow-auto snap-x snap-mandatory scroll-smooth sm:gap-2">
+            {[front, back ?? front].map((img, index) => (
+              <Image
+                style={{ aspectRatio: "360 / 500" }}
+                class="snap-center min-w-[100vw] sm:min-w-0 sm:w-auto sm:h-[600px]"
+                sizes="(max-width: 640px) 100vw, 30vw"
+                src={img.url!}
+                alt={img.alternateName}
+                width={360}
+                height={500}
+                // Preload LCP image for better web vitals
+                preload={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            ))}
+          </div>
+          <div class="w-full flex flex-col max-w-[640px]">
+            <div class="flex justify-between mt-3">
+              <h1 class="lg:text-2xl text-[20px] font-bold text-[#5D7661]">
+                {
+                  /* {name?.includes(isVariantOf?.name ?? "")
+                ? name
+                : `${isVariantOf?.name ?? ""} - ${name}`} */
+                }
+                asdasd
+              </h1>
+              <div class="flex flex-col items-center">
+                <p class="text-[#324836] font-normal text-[10px]">
+                  3 avaliações
+                </p>
+                <div class="flex  gap-1">
+                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                  <IconStarFilled class="h-4 w-4 text-[#ECCDA5]" />
+                </div>
+              </div>
+            </div>
+            {description && (
+              <div class="flex flex-col justify-center items-start mt-4 pb-4">
+                <p class="text-black font-bold text-[11px] uppercase">
+                  Descrição
+                </p>
+                <span class="text-[#727272] font-medium capitalize text-[11px] mt-[6px]">
+                  {description}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div class="md:hidden flex flex-col gap-4 sm:flex-row sm:gap-10 pt-5 px-4">
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
         {/* Image Gallery */}
         <div class="flex flex-row overflow-auto snap-x snap-mandatory scroll-smooth sm:gap-2">
           {[front, back ?? front].map((img, index) => (
@@ -65,70 +126,57 @@ function Details({ page }: { page: ProductDetailsPage }) {
             />
           ))}
         </div>
-        {/* Product Info */}
-        <div class="flex-auto px-4 sm:px-0">
-          {/* Breadcrumb */}
-          <Breadcrumb
-            itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-          />
-          {/* Code and name */}
-          <div class="mt-4 sm:mt-8">
-            <div>
-              <Text tone="subdued" variant="caption">
-                Cod. {gtin}
-              </Text>
-            </div>
-            <h1>
-              <Text variant="heading-3">{name}</Text>
+        <div class="w-full flex flex-col">
+          <div class="flex justify-between mt-3">
+            <h1 class="lg:text-2xl text-[20px] font-bold text-[#5D7661]">
+              {
+                /* {name?.includes(isVariantOf?.name ?? "")
+                ? name
+                : `${isVariantOf?.name ?? ""} - ${name}`} */
+              }
+              asdasd
             </h1>
-          </div>
-          {/* Prices */}
-          <div class="mt-4">
-            <div class="flex flex-row gap-2 items-center">
-              <Text
-                class="line-through"
-                tone="subdued"
-                variant="list-price"
-              >
-                {formatPrice(listPrice, offers!.priceCurrency!)}
-              </Text>
-              <Text tone="price" variant="heading-3">
-                {formatPrice(price, offers!.priceCurrency!)}
-              </Text>
+            <div class="flex flex-col items-center">
+              <p class="text-[#324836] font-normal text-[10px]">3 avaliações</p>
+              <div class="flex  gap-1">
+                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
+                <IconStarFilled class="h-4 w-4 text-[#ECCDA5]" />
+              </div>
             </div>
-            <Text tone="subdued" variant="caption">
-              {installments}
-            </Text>
           </div>
-          {/* Sku Selector */}
-          <div class="mt-4 sm:mt-6">
-            <ProductSelector product={product} />
-          </div>
-          {/* Add to Cart and Favorites button */}
-          <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-            {seller && (
-              <AddToCartButton
-                skuId={productID}
-                sellerId={seller}
-              />
-            )}
-            <Button variant="secondary">
-              <Icon id="Heart" width={20} height={20} strokeWidth={2} />{" "}
-              Favoritar
-            </Button>
-          </div>
-          {/* Description card */}
-          <div class="mt-4 sm:mt-6">
-            <Text variant="caption">
-              {description && (
-                <details>
-                  <summary class="cursor-pointer">Descrição</summary>
-                  <div class="ml-2 mt-2">{description}</div>
-                </details>
-              )}
-            </Text>
-          </div>
+          {description && (
+            <div class="flex flex-col justify-center items-start mt-4 pb-4">
+              <p class="text-black font-bold text-[11px] uppercase">
+                Descrição
+              </p>
+              <span class="text-[#727272] font-medium capitalize text-[11px] mt-[6px]">
+                {description}
+              </span>
+            </div>
+          )}
         </div>
+      </div>
+      <div class="max-w-[1280px] z-50 bg-[#324836] h-[120px] rounded-t-[25px] pt-[30px] px-[14px] fixed bottom-0 w-full flex items-start justify-between">
+        <div class="w-full">
+          {listPrice && (
+            <div>
+              <span class="line-through text-[#C1C1C1] text-[14px] font-normal">
+                {formatPrice(listPrice, offers!.priceCurrency!)}
+              </span>
+            </div>
+          )}
+          {price && (
+            <div>
+              <span class="text-[#ECCDA5] text-[24px] font-bold">
+                {formatPrice(price, offers!.priceCurrency!)}
+              </span>
+            </div>
+          )}
+        </div>
+        {seller && <AddToCartButton skuId={productID} sellerId={seller} />}
       </div>
     </Container>
   );
