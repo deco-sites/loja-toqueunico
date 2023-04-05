@@ -4,14 +4,14 @@ import Container from "$store/components/ui/Container.tsx";
 import Text from "$store/components/ui/Text.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import Button from "$store/components/ui/Button.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import IconStarFilled from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/star-filled.tsx";
-
-import ProductSelector from "./ProductVariantSelector.tsx";
+import type { Product } from "deco-sites/std/commerce/types.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import Avatar from "$store/components/ui/Avatar.tsx";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
@@ -27,6 +27,32 @@ function NotFound() {
         </a>
       </div>
     </div>
+  );
+}
+
+function Sizes(product: Product) {
+  const possibilities = useVariantPossibilities(product);
+  const options = Object.entries(
+    possibilities["TAMANHO"] ?? possibilities["Tamanho"] ?? {},
+  );
+
+  return (
+    <ul class="flex justify-center items-center gap-2">
+      {options.map(([value, urls]) => {
+        const url = urls.find((url) => url === product.url) || urls[0];
+
+        return (
+          <a href={url}>
+            <Avatar
+              class="bg-default"
+              variant="abbreviation"
+              content={value}
+              disabled={url === product.url}
+            />
+          </a>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -102,6 +128,12 @@ function Details({ page }: { page: ProductDetailsPage }) {
                 </span>
               </div>
             )}
+            <div class="flex flex-col items-start justify-center">
+              <p class="text-black font-bold text-[11px] uppercase mb-2">
+                SELECIONE O TAMANHO
+              </p>
+              <Sizes {...product} />
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +158,7 @@ function Details({ page }: { page: ProductDetailsPage }) {
             />
           ))}
         </div>
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col border-b-1">
           <div class="flex justify-between mt-3">
             <h1 class="lg:text-2xl text-[20px] font-bold text-[#5D7661]">
               {
@@ -157,6 +189,12 @@ function Details({ page }: { page: ProductDetailsPage }) {
               </span>
             </div>
           )}
+        </div>
+        <div class="flex flex-col items-start justify-center">
+          <p class="text-black font-bold text-[11px] uppercase mb-2">
+            SELECIONE O TAMANHO
+          </p>
+          <Sizes {...product} />
         </div>
       </div>
       <div class="max-w-[1280px] z-50 bg-[#324836] h-[120px] rounded-t-[25px] pt-[30px] px-[14px] fixed bottom-0 w-full flex items-start justify-between">
