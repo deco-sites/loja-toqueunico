@@ -31,7 +31,9 @@ function ProductShelf({
       class="grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:px-5 pb-[120px]"
     >
       <h2 class="text-center row-start-1 col-span-full">
-        <Text variant="heading-2">{title}</Text>
+        <Text variant="heading-2" class="text-[#5D7661] leading-3">
+          {title}
+        </Text>
       </h2>
 
       <Slider

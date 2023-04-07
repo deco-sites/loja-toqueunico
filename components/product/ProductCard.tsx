@@ -6,6 +6,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 
 /**
  * A simple, inplace sku selector to be displayed once the user hovers the product card
@@ -95,25 +96,30 @@ function ProductCard({ product, preload }: Props) {
           )}
         </div>
 
-        <div class="flex flex-col gap-1 py-2 px-5">
-          <Text
-            class="overflow-hidden overflow-ellipsis whitespace-nowrap"
-            variant="caption"
-          >
-            {name}
-          </Text>
-          <div class="flex items-center gap-2">
+        <div class="flex justify-between">
+          <div class="flex flex-col gap-1 py-2 px-5">
             <Text
-              class="line-through"
-              variant="list-price"
-              tone="subdued"
+              class="overflow-hidden overflow-ellipsis whitespace-nowrap text-[#5D7661]"
+              variant="caption"
             >
-              {formatPrice(listPrice, offers!.priceCurrency!)}
+              {name}
             </Text>
-            <Text variant="caption" tone="price">
-              {formatPrice(price, offers!.priceCurrency!)}
-            </Text>
+            <div class="flex items-center gap-2">
+              <Text
+                class="line-through text-[#5D7661]"
+                variant="list-price"
+                tone="subdued"
+              >
+                {formatPrice(listPrice, offers!.priceCurrency!)}
+              </Text>
+              <Text variant="caption" class="text-[#324836]">
+                {formatPrice(price, offers!.priceCurrency!)}
+              </Text>
+            </div>
           </div>
+          {seller && (
+            <AddToCartButton skuId={productID} sellerId={seller} icon={true} />
+          )}
         </div>
       </a>
     </div>

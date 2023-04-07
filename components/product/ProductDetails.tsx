@@ -197,7 +197,7 @@ function Details({ page }: { page: ProductDetailsPage }) {
           <Sizes {...product} />
         </div>
       </div>
-      <div class="max-w-[1280px] z-50 bg-[#324836] h-[120px] rounded-t-[25px] pt-[30px] px-[14px] fixed bottom-0 w-full flex items-start justify-between">
+      <div class="md:hidden z-50 bg-[#324836] h-[120px] rounded-t-[25px] pt-[30px] px-[14px] fixed bottom-0 w-full flex items-start justify-between">
         <div class="w-full">
           {listPrice && (
             <div>
