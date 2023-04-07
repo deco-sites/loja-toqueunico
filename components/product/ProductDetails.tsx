@@ -74,10 +74,25 @@ function Details({ page }: { page: ProductDetailsPage }) {
 
   return (
     <Container class="py-0 sm:py-10">
+      {/* Desktop */}
       <div class="md:inline hidden mx-4">
-        <Breadcrumb
-          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-        />
+        <div class="flex items-center justify-between pb-4">
+          <Breadcrumb
+            itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+          />
+          <div class="flex flex-col items-center">
+            <p class="text-[#324836] font-normal text-[25px]">
+              3 avaliações
+            </p>
+            <div class="flex  gap-1">
+              <IconStarFilled class="h-8 w-8 text-[#5D7661]" />
+              <IconStarFilled class="h-8 w-8 text-[#5D7661]" />
+              <IconStarFilled class="h-8 w-8 text-[#5D7661]" />
+              <IconStarFilled class="h-8 w-8 text-[#5D7661]" />
+              <IconStarFilled class="h-8 w-8 text-[#ECCDA5]" />
+            </div>
+          </div>
+        </div>
         <div class="flex">
           <div class="flex flex-row overflow-auto snap-x snap-mandatory scroll-smooth sm:gap-2">
             {[front, back ?? front].map((img, index) => (
@@ -95,48 +110,62 @@ function Details({ page }: { page: ProductDetailsPage }) {
               />
             ))}
           </div>
-          <div class="w-full flex flex-col max-w-[640px]">
-            <div class="flex justify-between mt-3">
-              <h1 class="lg:text-2xl text-[20px] font-bold text-[#5D7661]">
-                {
-                  /* {name?.includes(isVariantOf?.name ?? "")
-                ? name
-                : `${isVariantOf?.name ?? ""} - ${name}`} */
-                }
-                asdasd
-              </h1>
-              <div class="flex flex-col items-center">
-                <p class="text-[#324836] font-normal text-[10px]">
-                  3 avaliações
-                </p>
-                <div class="flex  gap-1">
-                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                  <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                  <IconStarFilled class="h-4 w-4 text-[#ECCDA5]" />
+          <div class="w-full flex flex-col max-w-[640px] justify-between">
+            <div>
+              <div class="flex justify-between mt-3">
+                <h1 class="text-[45px] font-bold text-[#5D7661]">
+                  {name}
+                </h1>
+              </div>
+              {description && (
+                <div class="flex flex-col justify-center items-start mt-4 pb-4">
+                  <p class="text-black font-bold text-[20px] uppercase border-t-1 pt-[22px]">
+                    Descrição
+                  </p>
+                  <span class="text-[#727272] font-medium capitalize text-[15px] mt-[6px]">
+                    {description}
+                  </span>
                 </div>
+              )}
+              <div class="flex items-center pt-3">
+                <p class="text-black font-bold text-[20px] uppercase mr-4">
+                  SELECIONE O TAMANHO
+                </p>
+                <Sizes {...product} />
               </div>
             </div>
-            {description && (
-              <div class="flex flex-col justify-center items-start mt-4 pb-4">
-                <p class="text-black font-bold text-[11px] uppercase">
-                  Descrição
-                </p>
-                <span class="text-[#727272] font-medium capitalize text-[11px] mt-[6px]">
-                  {description}
-                </span>
+            <div class="bg-[#324836] w-[full] h-[162px] rounded-[18px] py-[30px] px-[88px] flex justify-between items-center">
+              <div>
+                <div class="w-full">
+                  {listPrice && (
+                    <div>
+                      <span class="line-through text-[#C1C1C1] text-[20px] font-normal">
+                        {formatPrice(listPrice, offers!.priceCurrency!)}
+                      </span>
+                    </div>
+                  )}
+                  {price && (
+                    <div class="pb-5">
+                      <span class="text-white text-[47px] font-bold">
+                        {formatPrice(price, offers!.priceCurrency!)}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-            <div class="flex flex-col items-start justify-center">
-              <p class="text-black font-bold text-[11px] uppercase mb-2">
-                SELECIONE O TAMANHO
-              </p>
-              <Sizes {...product} />
+              <div class="w-[182px]">
+                {seller && (
+                  <AddToCartButton
+                    skuId={productID}
+                    sellerId={seller}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {/* Mobile */}
       <div class="md:hidden flex flex-col gap-4 sm:flex-row sm:gap-10 pt-5 px-4">
         <Breadcrumb
           itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
