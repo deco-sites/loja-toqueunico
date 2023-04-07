@@ -97,16 +97,16 @@ function ProductCard({ product, preload }: Props) {
         </div>
 
         <div class="flex justify-between">
-          <div class="flex flex-col gap-1 py-2 px-5">
+          <div class="flex flex-col gap-1 py-2 px-2 md:px-5 w-[70%] md:w-full">
             <Text
-              class="overflow-hidden overflow-ellipsis whitespace-nowrap text-[#5D7661] font-medium text-[20px]"
+              class="overflow-hidden overflow-ellipsis whitespace-nowrap text-[#5D7661] font-medium text-[12px] md:text-[20px]"
               variant="caption"
             >
               {name}
             </Text>
             <div class="flex items-center gap-2 pt-2">
               <Text
-                class="line-through text-[#5D7661] font-bold text-[20px]"
+                class="line-through text-[#5D7661] font-bold text-[12px] md:text-[20px]"
                 variant="list-price"
                 tone="subdued"
               >
@@ -114,7 +114,7 @@ function ProductCard({ product, preload }: Props) {
               </Text>
               <Text
                 variant="caption"
-                class="text-[#D8564D] font-bold text-[20px]"
+                class="text-[#D8564D] font-bold text-[12px] md:text-[20px]"
               >
                 {formatPrice(price, offers!.priceCurrency!)}
               </Text>

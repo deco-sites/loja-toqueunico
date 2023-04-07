@@ -31,6 +31,7 @@ function AddToCartButton({ skuId, sellerId, icon = false }: Props) {
           {...props}
           variant="icon"
           data-deco="add-to-cart"
+          class="px-0 md:px-2"
         >
           <Icon
             id="ShoppingCart"
