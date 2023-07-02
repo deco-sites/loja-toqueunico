@@ -4,6 +4,7 @@
 
 import { DecoManifest } from "$live/types.ts";
 import * as $$$0 from "./loaders/simpleProductList.ts";
+import * as $$$1 from "./loaders/simpleProductPage.ts";
 import * as $$$$0 from "./routes/api/[...catchall].tsx";
 import * as $$$$1 from "./routes/_app.tsx";
 import * as $$$$$0 from "./islands/HeaderButton.tsx";
@@ -176,6 +177,7 @@ const manifest = {
     "deco-sites/std/loaders/vtex/user.ts": i2$$$18,
     "deco-sites/std/loaders/vtex/wishlist.ts": i2$$$19,
     "deco-sites/toqueunico/loaders/simpleProductList.ts": $$$0,
+    "deco-sites/toqueunico/loaders/simpleProductPage.ts": $$$1,
   },
   "routes": {
     "./routes/_app.tsx": $$$$1,

@@ -66,6 +66,7 @@
               "deco-sites/std/loaders/vtex/user.ts",
               "deco-sites/std/loaders/vtex/wishlist.ts",
               "deco-sites/toqueunico/loaders/simpleProductList.ts",
+              "deco-sites/toqueunico/loaders/simpleProductPage.ts",
               "./islands/AddToCartButton.tsx",
               "./islands/HeaderButton.tsx",
               "./islands/HeaderModals.tsx",
@@ -1832,6 +1833,27 @@
                 "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts"
               ],
               "default": "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts"
+            }
+          }
+        },
+        {
+          "title": "Simple Product Page",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdFBhZ2UudHM=@Props"
+            }
+          ],
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "deco-sites/toqueunico/loaders/simpleProductPage.ts"
+              ],
+              "default": "deco-sites/toqueunico/loaders/simpleProductPage.ts"
             }
           }
         }
@@ -7548,12 +7570,37 @@
             "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@SimpleProduct"
           },
           "title": "Products"
+        },
+        "shuffle": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Shuffle"
         }
       },
       "required": [
         "products"
       ],
       "title": "deco-sites/toqueunico/loaders/simpleProductList.ts@Props"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdFBhZ2UudHM=@Props": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvZnVuY3Rpb25zL3JlcXVlc3RUb1BhcmFtLnRz@RequestURLParam",
+          "title": "Product Id"
+        },
+        "allProducts": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
+          "title": "All Products"
+        }
+      },
+      "required": [
+        "productId",
+        "allProducts"
+      ],
+      "title": "deco-sites/toqueunico/loaders/simpleProductPage.ts@Props"
     },
     "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2NvbXBvbmVudHMvc2VhcmNoL0NvbnRyb2xzLnRzeA==@Props": {
       "type": "object",
@@ -10993,6 +11040,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdFBhZ2UudHM=": {
+      "title": "Simple Product Page",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdFBhZ2UudHM=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/toqueunico/loaders/simpleProductPage.ts"
+          ],
+          "default": "deco-sites/toqueunico/loaders/simpleProductPage.ts"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0FkZFRvQ2FydEJ1dHRvbi50c3g=": {
       "title": "./islands/AddToCartButton.tsx",
       "type": "object",
@@ -12811,6 +12879,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdFBhZ2UudHM="
         }
       ]
     },

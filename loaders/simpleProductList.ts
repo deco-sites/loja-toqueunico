@@ -40,6 +40,7 @@ export interface SimpleProduct {
 
 export interface Props {
   products: Array<SimpleProduct>;
+  shuffle?: boolean;
 }
 
 /**
@@ -49,7 +50,12 @@ export interface Props {
 const loader = (
   props: Props,
 ): Promise<Product[] | null> => {
-  return Promise.resolve(props.products.map(mapProductToSchemaOrg));
+  const mappedProducts = props.products.map(mapProductToSchemaOrg);
+  if (props.shuffle) {
+    return Promise.resolve(shuffleArray(mappedProducts));
+  } else {
+    return Promise.resolve(mappedProducts);
+  }
 };
 
 export default loader;
@@ -79,9 +85,10 @@ function mapProductToSchemaOrg(product: SimpleProduct): Product {
     "image": images.map((img) => ({
       "@type": "ImageObject",
       url: img.image,
-    })), // Assumes LiveImage has a 'url' property
+    })),
     "description": description,
-    "url": `https://yourwebsite.com/products/${id}`, // Replace with actual product URL logic
+    // TODO: How to make this configurable
+    "url": `/produtos/${id}`,
     "isConsumableFor": live
       ? "https://schema.org/InStock"
       : "https://schema.org/OutOfStock",
@@ -113,4 +120,22 @@ function mapProductToSchemaOrg(product: SimpleProduct): Product {
   } as Product;
 
   return schemaOrgProduct;
+}
+
+function shuffleArray<T>(array: Array<T>) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
