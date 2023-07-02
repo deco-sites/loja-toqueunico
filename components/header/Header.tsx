@@ -3,7 +3,6 @@ import type { Image } from "deco-sites/std/components/types.ts";
 import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
-import type { ClientConfigVTEX } from "deco-sites/std/functions/vtexConfig.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 import Alert from "./Alert.tsx";
@@ -48,10 +47,6 @@ export interface Props {
    */
   suggestions?: LoaderReturnType<Suggestion | null>;
 
-  /**
-   * @description vtex config used for search autocompletion;
-   */
-  configVTEX?: LoaderReturnType<ClientConfigVTEX>;
 
   logoImage: LiveImage;
 }
@@ -63,11 +58,10 @@ function Header(
     products,
     navItems = [],
     suggestions,
-    configVTEX,
     logoImage,
   }: Props,
 ) {
-  const searchbar = { ..._searchbar, products, suggestions, configVTEX };
+  const searchbar = { ..._searchbar, products, suggestions };
   return (
     <header class={`h-[${headerHeight}]`}>
       <div class="bg-[#242D21] fixed w-full z-50">
