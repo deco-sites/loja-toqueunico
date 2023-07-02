@@ -65,6 +65,7 @@
               "deco-sites/std/loaders/vtex/proxy.ts",
               "deco-sites/std/loaders/vtex/user.ts",
               "deco-sites/std/loaders/vtex/wishlist.ts",
+              "deco-sites/toqueunico/loaders/simpleProductList.ts",
               "./islands/AddToCartButton.tsx",
               "./islands/HeaderButton.tsx",
               "./islands/HeaderModals.tsx",
@@ -2099,6 +2100,28 @@
                 "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts"
               ],
               "default": "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts"
+            }
+          }
+        },
+        {
+          "title": "Simple Products",
+          "description": "Use it in Shelves and static Galleries.",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Props"
+            }
+          ],
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "deco-sites/toqueunico/loaders/simpleProductList.ts"
+              ],
+              "default": "deco-sites/toqueunico/loaders/simpleProductList.ts"
             }
           }
         }
@@ -7332,6 +7355,206 @@
       ],
       "title": "deco-sites/std/packs/vtex/loaders/wishlist.ts@Props"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image": {
+      "type": "string",
+      "format": "image-uri",
+      "title": "Image"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@AssemblyOption": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description"
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Price"
+        },
+        "live": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Live"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "AssemblyOption"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@AssemblyOption[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@AssemblyOption"
+      },
+      "title": "AssemblyOption[]"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Assembly": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "live": {
+          "type": "boolean",
+          "title": "Live"
+        },
+        "type": {
+          "title": "Type"
+        },
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Max"
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Price"
+        },
+        "options": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@AssemblyOption[]",
+          "title": "Options"
+        }
+      },
+      "required": [
+        "name",
+        "live",
+        "type",
+        "options"
+      ],
+      "title": "Assembly"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Assembly[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Assembly"
+      },
+      "title": "Assembly[]"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@SimpleProduct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Id"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+                "title": "Image"
+              }
+            },
+            "required": [
+              "image"
+            ]
+          },
+          "title": "Images"
+        },
+        "category": {
+          "type": "string",
+          "title": "Category"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description"
+        },
+        "live": {
+          "type": "boolean",
+          "title": "Live"
+        },
+        "price": {
+          "type": "number",
+          "title": "Price"
+        },
+        "highlight": {
+          "type": "boolean",
+          "title": "Highlight"
+        },
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Max"
+        },
+        "assemblyOptions": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Assembly[]",
+          "title": "Assembly Options"
+        }
+      },
+      "required": [
+        "name",
+        "images",
+        "category",
+        "live",
+        "price",
+        "highlight"
+      ],
+      "title": "SimpleProduct",
+      "titleBy": "name"
+    },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Props": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@SimpleProduct"
+          },
+          "title": "Products"
+        }
+      },
+      "required": [
+        "products"
+      ],
+      "title": "deco-sites/toqueunico/loaders/simpleProductList.ts@Props"
+    },
     "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2NvbXBvbmVudHMvc2VhcmNoL0NvbnRyb2xzLnRzeA==@Props": {
       "type": "object",
       "properties": {
@@ -7792,11 +8015,6 @@
         "defaultLocale"
       ],
       "title": "deco-sites/std/commerce/butterCMS/client.ts@ConfigButterCMS"
-    },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image": {
-      "type": "string",
-      "format": "image-uri",
-      "title": "Image"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null|ProductListingPage|null": {
       "anyOf": [
@@ -10753,6 +10971,28 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=": {
+      "title": "Simple Products",
+      "description": "Use it in Shelves and static Galleries.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/toqueunico/loaders/simpleProductList.ts"
+          ],
+          "default": "deco-sites/toqueunico/loaders/simpleProductList.ts"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0FkZFRvQ2FydEJ1dHRvbi50c3g=": {
       "title": "./islands/AddToCartButton.tsx",
       "type": "object",
@@ -12568,6 +12808,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L3dpc2hsaXN0LnRz"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy90b3F1ZXVuaWNvL2xvYWRlcnMvc2ltcGxlUHJvZHVjdExpc3QudHM="
         }
       ]
     },
