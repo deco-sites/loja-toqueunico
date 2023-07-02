@@ -47,7 +47,6 @@ export interface Props {
    */
   suggestions?: LoaderReturnType<Suggestion | null>;
 
-
   logoImage: LiveImage;
 }
 
