@@ -1,49 +1,56 @@
 import Button from "$store/components/ui/Button.tsx";
-import { useAddToCart } from "$store/sdk/useAddToCart.ts";
-import Icon from "$store/components/ui/Icon.tsx";
 
 interface Props {
-  skuId: string;
-  sellerId: string;
-  icon?: boolean;
+  productName: string;
+  productPrice: number;
+  targetWhatsappNumber: string;
 }
 
-function AddToCartButton({ skuId, sellerId, icon = false }: Props) {
-  const props = useAddToCart({
-    skuId,
-    sellerId,
-  });
+function AddToCartButton(
+  { productName, productPrice, targetWhatsappNumber }: Props,
+) {
+  const onClick = () => {
+    const urlLink = generateLink(
+      productName,
+      productPrice,
+      targetWhatsappNumber,
+    );
+  };
 
   return (
     <>
-      {!icon && (
-        <Button
-          variant="secondary"
-          data-deco="add-to-cart"
-          {...props}
-          class="w-full"
-        >
-          COMPRAR
-        </Button>
-      )}
-      {icon && (
-        <Button
-          {...props}
-          variant="icon"
-          data-deco="add-to-cart"
-          class="px-0 md:px-2"
-        >
-          <Icon
-            id="ShoppingCart"
-            width={20}
-            height={20}
-            strokeWidth={2}
-            class="text-[#ECCDA5]"
-          />
-        </Button>
-      )}
+      <Button
+        variant="secondary"
+        data-deco="add-to-cart"
+        onClick={onClick}
+        class="w-full"
+      >
+        COMPRAR
+      </Button>
     </>
   );
 }
 
 export default AddToCartButton;
+
+function formatCents(centavos: number) {
+  const reais = centavos / 100;
+  return reais.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+export const generateLink = (
+  productName: string,
+  price: number,
+  phone: string,
+) => {
+  const text = `*Olá!*
+
+  Me interessei sobre o produto *${productName}* (R$ ${formatCents(price)}).
+
+  Gostaria de prosseguir com a compra!
+}`;
+
+  return `https://api.whatsapp.com/send?phone=${phone}&text=${
+    window.encodeURIComponent(text)
+  }`;
+};

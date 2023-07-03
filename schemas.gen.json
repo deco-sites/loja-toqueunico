@@ -8990,10 +8990,15 @@
         "page": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null",
           "title": "Page"
+        },
+        "targetWhatsappNumber": {
+          "type": "string",
+          "title": "Número de WhatsApp para envio"
         }
       },
       "required": [
-        "page"
+        "page",
+        "targetWhatsappNumber"
       ],
       "title": "deco-sites/toqueunico/components/product/ProductDetails.tsx@Props"
     },

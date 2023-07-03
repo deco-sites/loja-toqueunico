@@ -15,6 +15,8 @@ import Avatar from "$store/components/ui/Avatar.tsx";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
+  /** @title Número de WhatsApp para envio */
+  targetWhatsappNumber: string;
 }
 
 function NotFound() {
@@ -56,7 +58,7 @@ function Sizes(product: Product) {
   );
 }
 
-function Details({ page }: { page: ProductDetailsPage }) {
+function Details({ page, targetWhatsappNumber }: Props) {
   const {
     breadcrumbList,
     product,
@@ -66,11 +68,14 @@ function Details({ page }: { page: ProductDetailsPage }) {
     productID,
     offers,
     image: images,
+
     name,
     gtin,
   } = product;
   const { price, listPrice, seller, installments } = useOffer(offers);
   const [front, back] = images ?? [];
+
+  console.log({ listPrice, price });
 
   return (
     <Container class="py-0 sm:py-10">
@@ -154,10 +159,11 @@ function Details({ page }: { page: ProductDetailsPage }) {
                 </div>
               </div>
               <div class="w-[182px]">
-                {seller && (
+                {product?.name && (
                   <AddToCartButton
-                    skuId={productID}
-                    sellerId={seller}
+                    productName={product.name}
+                    productPrice={(product?.offers as any)?.price}
+                    targetWhatsappNumber={targetWhatsappNumber}
                   />
                 )}
               </div>
@@ -243,15 +249,21 @@ function Details({ page }: { page: ProductDetailsPage }) {
             </div>
           )}
         </div>
-        {seller && <AddToCartButton skuId={productID} sellerId={seller} />}
+        {product?.name && (
+          <AddToCartButton
+            productName={product.name}
+            productPrice={(product?.offers as any)?.price}
+            targetWhatsappNumber={targetWhatsappNumber}
+          />
+        )}
       </div>
     </Container>
   );
 }
 
-function ProductDetails({ page }: Props) {
-  if (page) {
-    return <Details page={page} />;
+function ProductDetails(props: Props) {
+  if (props.page) {
+    return <Details {...props} />;
   }
 
   return <NotFound />;
