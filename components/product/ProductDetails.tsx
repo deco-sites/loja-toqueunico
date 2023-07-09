@@ -59,6 +59,8 @@ function Sizes(product: Product) {
 }
 
 function Details({ page, targetWhatsappNumber }: Props) {
+  if (!page) return null;
+
   const {
     breadcrumbList,
     product,
@@ -164,7 +166,7 @@ function Details({ page, targetWhatsappNumber }: Props) {
                 {product?.name && (
                   <AddToCartButton
                     productName={product.name}
-                    productPrice={(product?.offers as any)?.price}
+                    productPrice={product.offers?.offers[0].price || 0}
                     targetWhatsappNumber={targetWhatsappNumber}
                   />
                 )}
@@ -241,7 +243,7 @@ function Details({ page, targetWhatsappNumber }: Props) {
         {product?.name && (
           <AddToCartButton
             productName={product.name}
-            productPrice={(product?.offers as any)?.price}
+            productPrice={product.offers?.offers[0].price || 0}
             targetWhatsappNumber={targetWhatsappNumber}
           />
         )}

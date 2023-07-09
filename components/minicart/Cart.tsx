@@ -1,4 +1,3 @@
-import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import Button from "$store/components/ui/Button.tsx";
 import Text from "$store/components/ui/Text.tsx";
@@ -12,7 +11,8 @@ const CHECKOUT_URL =
 
 function Cart() {
   const { displayCart } = useUI();
-  const { cart, loading } = useCart();
+  const cart = { value: null } as any;
+  // const { cart, loading } = useCart();
   const isCartEmpty = cart.value?.items.length === 0;
   const total = cart.value?.totalizers.find((item) => item.id === "Items");
   const discounts = cart.value?.totalizers.find((item) =>

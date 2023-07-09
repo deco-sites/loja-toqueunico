@@ -35,7 +35,7 @@ function AddToCartButton(
 export default AddToCartButton;
 
 function formatCents(centavos: number) {
-  const reais = centavos / 100;
+  const reais = centavos;
   return reais.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
@@ -46,10 +46,10 @@ export const generateLink = (
 ) => {
   const text = `*Olá!*
 
-  Me interessei sobre o produto *${productName}* (R$ ${formatCents(price)}).
+  Me interessei sobre o produto *${productName}* (${formatCents(price)}).
 
   Gostaria de prosseguir com a compra!
-}`;
+`;
 
   return `https://api.whatsapp.com/send?phone=${phone}&text=${
     window.encodeURIComponent(text)
