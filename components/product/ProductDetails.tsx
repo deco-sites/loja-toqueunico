@@ -75,8 +75,6 @@ function Details({ page, targetWhatsappNumber }: Props) {
   const { price, listPrice, seller, installments } = useOffer(offers);
   const [front, back] = images ?? [];
 
-  console.log({ listPrice, price });
-
   return (
     <Container class="py-0 sm:py-10">
       {/* Desktop */}
@@ -85,7 +83,8 @@ function Details({ page, targetWhatsappNumber }: Props) {
           <Breadcrumb
             itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
           />
-          <div class="flex flex-col items-center">
+          {
+            /* <div class=" flex-col items-center">
             <p class="text-[#324836] font-normal text-[25px]">
               3 avaliações
             </p>
@@ -96,7 +95,8 @@ function Details({ page, targetWhatsappNumber }: Props) {
               <IconStarFilled class="h-8 w-8 text-[#5D7661]" />
               <IconStarFilled class="h-8 w-8 text-[#ECCDA5]" />
             </div>
-          </div>
+          </div> */
+          }
         </div>
         <div class="flex">
           <div class="flex flex-row overflow-auto snap-x snap-mandatory scroll-smooth sm:gap-2">
@@ -133,10 +133,12 @@ function Details({ page, targetWhatsappNumber }: Props) {
                 </div>
               )}
               <div class="flex items-center pt-3">
-                <p class="text-black font-bold text-[20px] uppercase mr-4">
+                {
+                  /* <p class="text-black font-bold text-[20px] uppercase mr-4">
                   SELECIONE O TAMANHO
                 </p>
-                <Sizes {...product} />
+                <Sizes {...product} /> */
+                }
               </div>
             </div>
             <div class="bg-[#324836] w-[full] h-[162px] rounded-[18px] py-[30px] px-[88px] flex justify-between items-center">
@@ -196,23 +198,8 @@ function Details({ page, targetWhatsappNumber }: Props) {
         <div class="w-full flex flex-col border-b-1">
           <div class="flex justify-between mt-3">
             <h1 class="lg:text-2xl text-[20px] font-bold text-[#5D7661]">
-              {
-                /* {name?.includes(isVariantOf?.name ?? "")
-                ? name
-                : `${isVariantOf?.name ?? ""} - ${name}`} */
-              }
-              asdasd
+              {name}
             </h1>
-            <div class="flex flex-col items-center">
-              <p class="text-[#324836] font-normal text-[10px]">3 avaliações</p>
-              <div class="flex  gap-1">
-                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                <IconStarFilled class="h-4 w-4 text-[#5D7661]" />
-                <IconStarFilled class="h-4 w-4 text-[#ECCDA5]" />
-              </div>
-            </div>
           </div>
           {description && (
             <div class="flex flex-col justify-center items-start mt-4 pb-4">
@@ -226,10 +213,12 @@ function Details({ page, targetWhatsappNumber }: Props) {
           )}
         </div>
         <div class="flex flex-col items-start justify-center">
-          <p class="text-black font-bold text-[11px] uppercase mb-2">
+          {
+            /* <p class="text-black font-bold text-[11px] uppercase mb-2">
             SELECIONE O TAMANHO
           </p>
-          <Sizes {...product} />
+          <Sizes {...product} /> */
+          }
         </div>
       </div>
       <div class="md:hidden z-50 bg-[#324836] h-[120px] rounded-t-[25px] pt-[30px] px-[14px] fixed bottom-0 w-full flex items-start justify-between">

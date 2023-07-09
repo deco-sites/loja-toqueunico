@@ -93,17 +93,20 @@ function mapProductToSchemaOrg(product: SimpleProduct): Product {
       ? "https://schema.org/InStock"
       : "https://schema.org/OutOfStock",
     "offers": {
-      highPrice: 100,
-      lowPrice: 400,
-      offerCount: 2,
-      offers: [],
       "@type": "AggregateOffer",
-      "price": price,
-      "priceCurrency": "USD", // Replace with the currency you use
-
-      "availability": live
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+      "priceCurrency": "BRL",
+      highPrice: price / 100,
+      lowPrice: price / 100,
+      offerCount: 2,
+      offers: [{
+        "price": price / 100,
+        "@type": "Offer",
+        priceSpecification: [],
+        "inventoryLevel": 10,
+        "availability": live
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      }],
     },
     // "aggregateRating": {
     //   "@type": "AggregateRating",

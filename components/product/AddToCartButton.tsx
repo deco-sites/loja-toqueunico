@@ -15,6 +15,7 @@ function AddToCartButton(
       productPrice,
       targetWhatsappNumber,
     );
+    location.href = urlLink;
   };
 
   return (

@@ -7,7 +7,7 @@ import type { Props as SearchbarProps } from "$store/components/search/Searchbar
 import Loading from "$store/components/ui/Loading.tsx";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
+// const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
 const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 interface Props {
@@ -59,7 +59,7 @@ function Modals({ menu, searchbar }: Props) {
         }}
       >
         <Suspense fallback={<Loading />}>
-          <Cart />
+          {/* <Cart /> */}
         </Suspense>
       </Modal>
     </>
