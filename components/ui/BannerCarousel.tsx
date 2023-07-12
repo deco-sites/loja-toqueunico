@@ -1,8 +1,8 @@
 import Text from "$store/components/ui/Text.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
-import SliderControllerJS from "$store/islands/SliderJS.tsx";
+import Slider from "$store/components/ui/SliderOld.tsx";
+import SliderControllerJS from "$store/islands/SliderOld.tsx";
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import { useId } from "preact/hooks";
 import { animation, keyframes, tw } from "twind/css";

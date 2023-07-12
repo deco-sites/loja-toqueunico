@@ -2,9 +2,8 @@ import { useEffect } from "preact/hooks";
 
 interface Props {
   rootId: string;
-  scroll?: "smooth" | "auto";
+  behavior?: "smooth" | "auto";
   interval?: number;
-  infinite?: boolean;
 }
 
 const ATTRIBUTES = {
@@ -46,7 +45,7 @@ const isHTMLElement = (x: Element): x is HTMLElement =>
   // deno-lint-ignore no-explicit-any
   typeof (x as any).offsetLeft === "number";
 
-const setup = ({ rootId, scroll, interval, infinite }: Props) => {
+const setup = ({ rootId, behavior, interval }: Props) => {
   const root = document.getElementById(rootId);
   const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
   const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
@@ -57,7 +56,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
       "Missing necessary slider attributes. It will not work as intended. Necessary elements:",
-      { root, slider, items, rootId },
+      { root, slider, items },
     );
 
     return;
@@ -97,7 +96,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
     slider.scrollTo({
       top: 0,
-      behavior: scroll,
+      behavior,
       left: item.offsetLeft - root.offsetLeft,
     });
   };
@@ -127,32 +126,16 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   };
 
   const observer = new IntersectionObserver(
-    (elements) =>
-      elements.forEach((item) => {
-        const index = Number(item.target.getAttribute("data-slider-item")) || 0;
+    (items) =>
+      items.forEach((item) => {
+        const index =
+          Number(item.target.getAttribute(ATTRIBUTES["data-slider-item"])) || 0;
         const dot = dots?.item(index);
 
         if (item.isIntersecting) {
           dot?.setAttribute("disabled", "");
         } else {
           dot?.removeAttribute("disabled");
-        }
-
-        if (!infinite) {
-          if (index === 0) {
-            if (item.isIntersecting) {
-              prev?.setAttribute("disabled", "");
-            } else {
-              prev?.removeAttribute("disabled");
-            }
-          }
-          if (index === items.length - 1) {
-            if (item.isIntersecting) {
-              next?.setAttribute("disabled", "");
-            } else {
-              next?.removeAttribute("disabled");
-            }
-          }
         }
       }),
     { threshold: THRESHOLD, root: slider },
@@ -184,17 +167,11 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   };
 };
 
-function Slider({
-  rootId,
-  scroll = "smooth",
-  interval,
-  infinite = false,
-}: Props) {
-  useEffect(() => setup({ rootId, scroll, interval, infinite }), [
+function Slider({ rootId, behavior = "smooth", interval }: Props) {
+  useEffect(() => setup({ rootId, behavior, interval }), [
     rootId,
-    scroll,
+    behavior,
     interval,
-    infinite,
   ]);
 
   return <div data-slider-controller-js />;

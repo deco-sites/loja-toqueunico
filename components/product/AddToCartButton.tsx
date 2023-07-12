@@ -24,7 +24,7 @@ function AddToCartButton(
         variant="secondary"
         data-deco="add-to-cart"
         onClick={onClick}
-        class="w-full"
+        class="md:w-full !rounded-[10px] md:h-[88px] md:text-[35px] text-xl h-10 w-[133px]"
       >
         COMPRAR
       </Button>

@@ -111,8 +111,8 @@ const options: Omit<Options, "selfURL"> = {
       },
     },
     fontFamily: {
-      sans: ["Montserrat", "sans-serif"],
-      serif: ["inherit", "serif"],
+      sans: ["Sora"],
+      serif: ["Sora"],
     },
     screens: {
       sm: "640px",
@@ -124,12 +124,12 @@ const options: Omit<Options, "selfURL"> = {
   },
   preflight: (preflight) => ({
     ...preflight,
-
     // Stick footer to the bottom of the page
     body: {
       display: "flex",
       flexDirection: "column",
       minHeight: "100vh",
+      fontFamily: "Sora",
     },
     'section[data-manifest-key="./sections/Footer.tsx"]': {
       marginTop: "auto",
